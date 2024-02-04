@@ -1,5 +1,3 @@
-Certainly! Here's an example README.md file for an API security application built on Spring Boot 6, Spring Security, and Docker:
-
 ```markdown
 # API Security App
 
