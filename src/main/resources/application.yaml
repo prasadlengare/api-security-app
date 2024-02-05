@@ -9,3 +9,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
+  # Set the root logger level to INFO
+logging:
+  level:
+    root: INFO
+
