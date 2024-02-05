@@ -1,6 +1,7 @@
 package com.pocs.apisecurityapp.controller;
 
 import com.pocs.apisecurityapp.model.Employee;
+import com.pocs.apisecurityapp.model.EmployeeDTO;
 import com.pocs.apisecurityapp.service.EmployeeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,10 @@ public class EmployeeResource {
     @GetMapping
     public ResponseEntity<List<Employee>> getEmployees() {
         return ResponseEntity.ok(employeeService.getAllEmployee());
+    }
+    @GetMapping(value = "/mapper")
+    public ResponseEntity<List<EmployeeDTO>> getEmployeesMapper() {
+        return ResponseEntity.ok(employeeService.getAllEmployeeMapper());
     }
 
     @GetMapping("{empId}")

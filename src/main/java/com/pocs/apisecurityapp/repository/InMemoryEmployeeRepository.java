@@ -1,16 +1,22 @@
 package com.pocs.apisecurityapp.repository;
 
 import com.pocs.apisecurityapp.model.Employee;
+import com.pocs.apisecurityapp.model.EmployeeDTO;
+import com.pocs.apisecurityapp.service.impl.EmployeeDTOMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.lang.Boolean.TRUE;
 
 @Repository
+@RequiredArgsConstructor
 public class InMemoryEmployeeRepository {
     private static final List<Employee> DATABASE = new ArrayList<>();
+    private final EmployeeDTOMapper employeeDTOMapper;
     static {
         DATABASE.add(new Employee(1, "Raj", "Patil", "raj.patil@gmail.com"));
         DATABASE.add(new Employee(2, "John", "Doe", "john.doe@gmail.com"));
@@ -22,6 +28,12 @@ public class InMemoryEmployeeRepository {
     }
     public List<Employee> getAllEmployee() {
         return List.copyOf(DATABASE);
+    }
+    public List<EmployeeDTO> getAllEmployeeDTO() {
+        return List.copyOf(DATABASE)
+                .stream()
+                .map(employeeDTOMapper)
+                .collect(Collectors.toList());
     }
     public Employee findById(Integer empId) {
         return DATABASE
